@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Przesyłanie i Odtwarzanie Piosenek</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+
+        #uploadForm, #audioPlayer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Przesyłanie i Odtwarzanie Piosenek</h1>
+    
+    <form id="uploadForm" enctype="multipart/form-data">
+        <label for="songFile">Wybierz Piosenkę:</label>
+        <input type="file" id="songFile" name="songFile" accept=".mp3">
+        <br>
+        <button type="button" onclick="uploadSong()">Prześlij Piosenkę</button>
+    </form>
+
+    <div id="audioPlayer">
+        <h2>Odtwarzacz</h2>
+        <audio controls id="audioControl">
+            Twoja przeglądarka nie obsługuje elementu audio.
+        </audio>
+    </div>
+
+    <script>
+        function uploadSong() {
+            const fileInput = document.getElementById('songFile');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const formData = new FormData();
+                formData.append('songFile', file);
+
+                // Tutaj dodaj kod do wysłania formData na serwer (backend).
+                // Po przesłaniu pliku, pobierz jego URL z serwera.
+
+                const audioPlayer = document.getElementById('audioControl');
+                const audioURL = 'URL_PLIKU_AUDIO_Z_SERWERA'; // Zastąp prawdziwym URL-em pliku audio.
+
+                audioPlayer.src = audioURL;
+                alert('Piosenka przesłana i gotowa do odtworzenia!');
+            } else {
+                alert('Proszę wybrać plik przed przesłaniem.');
+            }
+        }
+    </script>
+</body>
+</html>
